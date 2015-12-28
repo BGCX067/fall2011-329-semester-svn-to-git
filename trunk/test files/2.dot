@@ -1,0 +1,189 @@
+digraph G {
+compound=true;
+"short.dvi" [shape=rectangle];
+"rcp1" [shape=oval];
+"short.dvi" -> "rcp1";
+"smiley.eps" [shape=rectangle];
+"rcp1" -> "smiley.eps";
+"logo.eps" [shape=rectangle];
+"rcp1" -> "logo.eps";
+"short.tex" [shape=rectangle];
+"rcp1" -> "short.tex";
+"short.bbl" [shape=rectangle];
+"rcp1" -> "short.bbl";
+subgraph cluster_recipe1{
+"while1" [shape=rectangle, label="while"];
+"Concat1" [shape=oval, label=<<B>Concat</B>>];
+"Concat1" -> "while1";
+"(latex2" [shape=rectangle, label="(latex"];
+"Concat1" -> "(latex2";
+"short3" [shape=rectangle, label="short"];
+"Concat1" -> "short3";
+";4" [shape=rectangle, label=";"];
+"Concat1" -> ";4";
+"grep5" [shape=rectangle, label="grep"];
+"Concat1" -> "grep5";
+"-q6" [shape=rectangle, label="-q"];
+"Concat1" -> "-q6";
+""Rerun7" [shape=rectangle, label=""Rerun"];
+"Concat1" -> ""Rerun7";
+"to8" [shape=rectangle, label="to"];
+"Concat1" -> "to8";
+"get9" [shape=rectangle, label="get"];
+"Concat1" -> "get9";
+"cross"10" [shape=rectangle, label="cross""];
+"Concat1" -> "cross"10";
+"short.log11" [shape=rectangle, label="short.log"];
+"Concat1" -> "short.log11";
+")12" [shape=rectangle, label=")"];
+"Concat1" -> ")12";
+"do13" [shape=rectangle, label="do"];
+"Concat1" -> "do13";
+"true14" [shape=rectangle, label="true"];
+"Concat1" -> "true14";
+";done15" [shape=rectangle, label=";done"];
+"Concat1" -> ";done15";
+}
+rcp1 -> Concat1 [style=dashed, label="refers-to", lhead=cluster_recipe1]
+"%.abcdefg" [shape=rectangle];
+"rcp2" [shape=oval];
+"%.abcdefg" -> "rcp2";
+"aaaa" [shape=rectangle];
+"rcp2" -> "aaaa";
+"CFLAGS" [shape=rectangle];
+"rcp2" -> "CFLAGS";
+"=" [shape=rectangle];
+"rcp2" -> "=";
+"-O" [shape=rectangle];
+"rcp2" -> "-O";
+"%.o" [shape=rectangle];
+"rcp3" [shape=oval];
+"%.o" -> "rcp3";
+"rcp3" -> "CFLAGS";
+"rcp3" -> "=";
+"rcp3" -> "-O";
+"%.eps" [shape=rectangle];
+"rcp4" [shape=oval];
+"%.eps" -> "rcp4";
+"%.fig" [shape=rectangle];
+"rcp4" -> "%.fig";
+subgraph cluster_recipe2{
+"fig2dev16" [shape=rectangle, label="fig2dev"];
+"Concat2" [shape=oval, label=<<B>Concat</B>>];
+"Concat2" -> "fig2dev16";
+"-L17" [shape=rectangle, label="-L"];
+"Concat2" -> "-L17";
+"eps18" [shape=rectangle, label="eps"];
+"Concat2" -> "eps18";
+"%.fig19" [shape=rectangle, label="%.fig"];
+"Concat2" -> "%.fig19";
+">20" [shape=rectangle, label=">"];
+"Concat2" -> ">20";
+"aaaa/21" [shape=rectangle, label="aaaa/"];
+"Concat2" -> "aaaa/21";
+"%.eps22" [shape=rectangle, label="%.eps"];
+"Concat2" -> "%.eps22";
+}
+rcp4 -> Concat2 [style=dashed, label="refers-to", lhead=cluster_recipe2]
+"short.pdf" [shape=rectangle];
+"rcp5" [shape=oval];
+"short.pdf" -> "rcp5";
+"short.ps" [shape=rectangle];
+"rcp5" -> "short.ps";
+subgraph cluster_recipe3{
+"ps2pdf23" [shape=rectangle, label="ps2pdf"];
+"Concat3" [shape=oval, label=<<B>Concat</B>>];
+"Concat3" -> "ps2pdf23";
+"short.ps24" [shape=rectangle, label="short.ps"];
+"Concat3" -> "short.ps24";
+"short.pdf25" [shape=rectangle, label="short.pdf"];
+"Concat3" -> "short.pdf25";
+}
+rcp5 -> Concat3 [style=dashed, label="refers-to", lhead=cluster_recipe3]
+"pdf" [shape=rectangle];
+"rcp6" [shape=oval];
+"pdf" -> "rcp6";
+"rcp6" -> "short.pdf";
+"rcp7" [shape=oval];
+"short.ps" -> "rcp7";
+"rcp7" -> "short.dvi";
+subgraph cluster_recipe4{
+"dvips26" [shape=rectangle, label="dvips"];
+"Concat4" [shape=oval, label=<<B>Concat</B>>];
+"Concat4" -> "dvips26";
+"short27" [shape=rectangle, label="short"];
+"Concat4" -> "short27";
+}
+rcp7 -> Concat4 [style=dashed, label="refers-to", lhead=cluster_recipe4]
+"ps" [shape=rectangle];
+"rcp8" [shape=oval];
+"ps" -> "rcp8";
+"rcp8" -> "short.ps";
+"short.tar.gz" [shape=rectangle];
+"rcp9" [shape=oval];
+"short.tar.gz" -> "rcp9";
+"rcp9" -> "smiley.eps";
+"rcp9" -> "logo.eps";
+"rcp9" -> "short.tex";
+"refs.bib" [shape=rectangle];
+"rcp9" -> "refs.bib";
+subgraph cluster_recipe5{
+"tar28" [shape=rectangle, label="tar"];
+"Concat5" [shape=oval, label=<<B>Concat</B>>];
+"Concat5" -> "tar28";
+"-czvf29" [shape=rectangle, label="-czvf"];
+"Concat5" -> "-czvf29";
+"short.tar.gz30" [shape=rectangle, label="short.tar.gz"];
+"Concat5" -> "short.tar.gz30";
+"smiley.eps31" [shape=rectangle, label="smiley.eps"];
+"Concat5" -> "smiley.eps31";
+"logo.eps32" [shape=rectangle, label="logo.eps"];
+"Concat5" -> "logo.eps32";
+"short.tex33" [shape=rectangle, label="short.tex"];
+"Concat5" -> "short.tex33";
+"refs.bib34" [shape=rectangle, label="refs.bib"];
+"Concat5" -> "refs.bib34";
+}
+rcp9 -> Concat5 [style=dashed, label="refers-to", lhead=cluster_recipe5]
+"tarball" [shape=rectangle];
+"rcp10" [shape=oval];
+"tarball" -> "rcp10";
+"rcp10" -> "short.tar.gz";
+"myfile" [shape=rectangle];
+"rcp11" [shape=oval];
+"myfile" -> "rcp11";
+"UNRESOLVED100019" [shape=rectangle, label=<<I>SYM100019</I>>];
+"rcp11" -> "UNRESOLVED100019";
+"UNRESOLVED100020" [shape=rectangle, label=<<I>SYM100020</I>>];
+"rcp11" -> "UNRESOLVED100020";
+"UNRESOLVED100021" [shape=rectangle, label=<<I>SYM100021</I>>];
+"rcp11" -> "UNRESOLVED100021";
+"UNRESOLVED100022" [shape=rectangle, label=<<I>SYM100022</I>>];
+"rcp11" -> "UNRESOLVED100022";
+subgraph cluster_recipe6{
+"a.c35" [shape=rectangle, label="a.c"];
+"Concat6" [shape=oval, label=<<B>Concat</B>>];
+"Concat6" -> "a.c35";
+"b.c36" [shape=rectangle, label="b.c"];
+"Concat6" -> "b.c36";
+"c.c37" [shape=rectangle, label="c.c"];
+"Concat6" -> "c.c37";
+"short38" [shape=rectangle, label="short"];
+"Concat6" -> "short38";
+}
+rcp11 -> Concat6 [style=dashed, label="refers-to", lhead=cluster_recipe6]
+"smiley.eps" -> "%.eps" [style=dotted, label="match"];
+"logo.eps" -> "%.eps" [style=dotted, label="match"];
+"UNRESOLVED100019" -> "%.abcdefg" [style=dotted, label="match"];
+"UNRESOLVED100019" -> "%.o" [style=dotted, label="match"];
+"UNRESOLVED100019" -> "%.eps" [style=dotted, label="match"];
+"UNRESOLVED100020" -> "%.abcdefg" [style=dotted, label="match"];
+"UNRESOLVED100020" -> "%.o" [style=dotted, label="match"];
+"UNRESOLVED100020" -> "%.eps" [style=dotted, label="match"];
+"UNRESOLVED100021" -> "%.abcdefg" [style=dotted, label="match"];
+"UNRESOLVED100021" -> "%.o" [style=dotted, label="match"];
+"UNRESOLVED100021" -> "%.eps" [style=dotted, label="match"];
+"UNRESOLVED100022" -> "%.abcdefg" [style=dotted, label="match"];
+"UNRESOLVED100022" -> "%.o" [style=dotted, label="match"];
+"UNRESOLVED100022" -> "%.eps" [style=dotted, label="match"];
+}

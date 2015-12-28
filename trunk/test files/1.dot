@@ -1,0 +1,49 @@
+digraph G {
+compound=true;
+".PHONY" [shape=rectangle];
+"rcp1" [shape=oval];
+".PHONY" -> "rcp1";
+"all" [shape=rectangle];
+"rcp1" -> "all";
+"rcp2" [shape=oval];
+"all" -> "rcp2";
+"server" [shape=rectangle];
+"rcp2" -> "server";
+"client" [shape=rectangle];
+"rcp2" -> "client";
+"rcp3" [shape=oval];
+"server" -> "rcp3";
+subgraph cluster_recipe1{
+"-o1" [shape=rectangle, label="-o"];
+"Concat1" [shape=oval, label=<<B>Concat</B>>];
+"Concat1" -> "-o1";
+"server2" [shape=rectangle, label="server"];
+"Concat1" -> "server2";
+}
+rcp3 -> Concat1 [style=dashed, label="refers-to", lhead=cluster_recipe1]
+"rcp4" [shape=oval];
+"client" -> "rcp4";
+subgraph cluster_recipe2{
+"-o3" [shape=rectangle, label="-o"];
+"Concat2" [shape=oval, label=<<B>Concat</B>>];
+"Concat2" -> "-o3";
+"client4" [shape=rectangle, label="client"];
+"Concat2" -> "client4";
+}
+rcp4 -> Concat2 [style=dashed, label="refers-to", lhead=cluster_recipe2]
+"clean" [shape=rectangle];
+"rcp5" [shape=oval];
+"clean" -> "rcp5";
+subgraph cluster_recipe3{
+"rm5" [shape=rectangle, label="rm"];
+"Concat3" [shape=oval, label=<<B>Concat</B>>];
+"Concat3" -> "rm5";
+"-f6" [shape=rectangle, label="-f"];
+"Concat3" -> "-f6";
+"server7" [shape=rectangle, label="server"];
+"Concat3" -> "server7";
+"client8" [shape=rectangle, label="client"];
+"Concat3" -> "client8";
+}
+rcp5 -> Concat3 [style=dashed, label="refers-to", lhead=cluster_recipe3]
+}

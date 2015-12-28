@@ -1,0 +1,61 @@
+PROGRAMS    = server client
+BUILD_LATEX = $(PROGRAMS)
+server_OBJS = server.o server_priv.o server_access.o
+server_LIBS = priv protocol
+client_OBJS = client.o client_api.o client_mem.o
+client_LIBS = protocol
+.PHONY: all
+all: $(PROGRAMS)
+
+define PROGRAM_template =
+$(1): $$($(1)_OBJS) $$($(1)_LIBS:%=-l%)
+ALL_OBJS   += $$($(1)_OBJS)
+endef
+
+$(foreach prog,$(PROGRAMS),$(eval $(call PROGRAM_template,$(prog))))
+
+$(PROGRAMS):
+	 $(LINK.o) $^ $(LDLIBS) -o $@
+
+
+ifeq (0,${MAKELEVEL})
+whoami    = $(shell whoami)
+host-type = $(shell arch)
+aaa := $(shell ls)
+aaa := $(shell ls)
+aaa := $(shell ls)
+bbb := $(shell ls)
+else ifeq ("$(origin V)", "command line")
+MAKEIT = ${MAKE} host-type=${host-type} whoami=${whoami}
+endif
+#AHMED: file1 file2 file3
+#	dvips file1 file2 $@
+endif
+
+ifdef V
+ifeq ("$(origin V)", "command line")
+KBUILD_VERBOSE = $(V)
+endif
+endif
+
+ifndef KBUILD_VERBOSE
+KBUILD_VERBOSE = 0
+endif
+
+EnvironmentObject.o: EnvironmentObject.cpp EnvironmentObject.h
+	${GXX} -c EnvironmentObject.cpp
+Ping.o: Ping.h Ping.cpp ISimObject.h ISee.h
+	${GXX} -c Ping.cpp
+Radar.o: Radar.h Radar.cpp
+	${GXX} -c Radar.cpp
+RuleKey.o: RuleKey.cpp RuleKey.h
+	${GXX} -c RuleKey.cpp
+Simulation.o: Simulation.h Rock.h Ball.h Block.h EnergyPill.h  Fog.h Mud.h Move.h Ping.h Radar.h Jam.h Lava.h Water.h Hole.h Property.h Simulation.cpp ISimulation.h ISimParsable.h RuleKey.h
+	${GXX} -c Simulation.cpp
+Strobot.o: Strobot.cpp Strobot.h Move.h IRobot.h
+	${GXX} -c Strobot.cpp
+Exceptions: ImmobileError.h UnexpectedAttributeException.h UnmetRequirementException.h BadFormatException.h ConfigException.h
+
+
+clean:
+	 rm -f $(ALL_OBJS) $(PROGRAMS)
